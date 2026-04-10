@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kaino4 Studios Forum</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #2a241d;
+      font-family: Verdana, Arial, sans-serif;
+      font-size: 13px;
+      color: #ddd4c8;
+      background-image: linear-gradient(#322b23, #241f19);
+    }
+    a {
+      color: #d9b15f;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #ffe0a0;
+      text-decoration: underline;
+    }
+    .topbar {
+      background: #15120f;
+      color: #c8b8a0;
+      border-bottom: 1px solid #4d3d2b;
+      font-size: 11px;
+      padding: 6px 12px;
+    }
+    .topbar-inner,
+    .header-inner,
+    .nav-inner,
+    .page,
+    .footer {
+      width: 980px;
+      margin: 0 auto;
+    }
+    .right {
+      float: right;
+    }
+    .clearfix::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+    .header {
+      background: linear-gradient(#4b3726, #2c2219);
+      color: #f2e2c1;
+      border-bottom: 1px solid #1a1410;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+    .header-inner {
+      padding: 18px 14px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 30px;
+      letter-spacing: 0.3px;
+      color: #f7d28a;
+      text-transform: uppercase;
+    }
+    .header p {
+      margin: 5px 0 0;
+      font-size: 12px;
+      color: #d0b890;
+    }
+    .nav {
+      background: #3a2d21;
+      border-top: 1px solid #6a4e36;
+      border-bottom: 1px solid #1c1510;
+    }
+    .nav-inner {
+      padding: 8px 10px;
+      font-size: 12px;
+    }
+    .nav a {
+      margin-right: 16px;
+      font-weight: bold;
+      color: #f2c97a;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.4px;
+    }
+    .page {
+      margin-top: 14px;
+      margin-bottom: 24px;
+    }
+    .breadcrumbs {
+      background: #3a3128;
+      border: 1px solid #5e4a35;
+      padding: 8px 10px;
+      font-size: 11px;
+      margin-bottom: 10px;
+      color: #c8b8a0;
+    }
+    .forum-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #2f2821;
+      border: 1px solid #72583d;
+      margin-bottom: 14px;
+    }
+    .forum-table th {
+      background: linear-gradient(#7b5a33, #5f4327);
+      color: #fff2d6;
+      text-align: left;
+      padding: 8px 10px;
+      font-size: 12px;
+      border: 1px solid #4b351f;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .forum-table td {
+      border: 1px solid #5a4531;
+      padding: 10px;
+      vertical-align: top;
+      background: #352c24;
+    }
+    .forum-row-alt td {
+      background: #2d261f;
+    }
+    .forum-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 4px;
+      color: #f0cc86;
+    }
+    .forum-desc {
+      color: #d4c4af;
+      line-height: 1.4;
+      font-size: 12px;
+    }
+    .small {
+      font-size: 11px;
+      color: #b9a892;
+    }
+    .stats,
+    .lastpost {
+      width: 150px;
+      font-size: 11px;
+      color: #ccb99f;
+      line-height: 1.45;
+    }
+    .post {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #72583d;
+      margin-bottom: 14px;
+      background: #2f2821;
+    }
+    .post th {
+      background: linear-gradient(#7b5a33, #5f4327);
+      color: #fff2d6;
+      text-align: left;
+      padding: 7px 10px;
+      font-size: 12px;
+      border: 1px solid #4b351f;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .post-user {
+      width: 180px;
+      border-right: 1px solid #5c4733;
+      background: #251f19;
+      padding: 12px;
+      vertical-align: top;
+    }
+    .post-body {
+      padding: 14px;
+      line-height: 1.55;
+      vertical-align: top;
+      background: #342b23;
+      color: #e2d5c4;
+    }
+    .username {
+      font-size: 14px;
+      font-weight: bold;
+      color: #f2c97a;
+      margin-bottom: 6px;
+    }
+    .usertitle {
+      font-size: 11px;
+      color: #b5a28c;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .avatar {
+      width: 88px;
+      height: 88px;
+      line-height: 88px;
+      text-align: center;
+      background: linear-gradient(#5b4733, #3d2e20);
+      border: 1px solid #8b6a47;
+      color: #ffe0a0;
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 12px;
+    }
+    .sig {
+      margin-top: 16px;
+      padding-top: 10px;
+      border-top: 1px dashed #6c543b;
+      color: #b9a892;
+      font-size: 11px;
+    }
+    .section-title {
+      background: linear-gradient(#7b5a33, #5f4327);
+      color: #fff2d6;
+      border: 1px solid #4b351f;
+      padding: 8px 10px;
+      font-weight: bold;
+      font-size: 12px;
+      margin-top: 14px;
+      margin-bottom: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .info-box {
+      background: #342b23;
+      border: 1px solid #72583d;
+      border-top: none;
+      padding: 12px;
+      line-height: 1.55;
+      color: #d7c7b3;
+    }
+    .footer {
+      font-size: 11px;
+      color: #9f8b73;
+      text-align: center;
+      padding-bottom: 24px;
+    }
+    ul {
+      margin-top: 6px;
+      margin-bottom: 10px;
+    }
+    .muted {
+      color: #b9a892;
+    }
+    .rank {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 2px 6px;
+      background: #4e3925;
+      border: 1px solid #8a6844;
+      color: #f3d59d;
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+    .status-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #7acb6a;
+      border: 1px solid #d8f0d2;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner clearfix">
+      <span>Kaino4 Studios Gaming Forum</span>
+      <span class="right">Support: <a href="mailto:support@kaino4apps.store">support@kaino4apps.store</a></span>
+    </div>
+  </div>
+
+  <div class="header">
+    <div class="header-inner">
+      <h1>Kaino4 Studios</h1>
+      <p>Official board for Minesweepah, Drummakid, support, and privacy policy information</p>
+    </div>
+  </div>
+
+  <div class="nav">
+    <div class="nav-inner">
+      <a href="#forums">Forum Index</a>
+      <a href="#apps">Game Releases</a>
+      <a href="#support">Support Desk</a>
+      <a href="#privacy">Privacy Policy</a>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="breadcrumbs">
+      Kaino4 Studios Forum &gt; Public Boards &gt; Announcements
+    </div>
+
+    <table class="forum-table" id="forums">
+      <tr>
+        <th>Forum</th>
+        <th style="width: 150px;">Threads / Posts</th>
+        <th style="width: 180px;">Last Post</th>
+      </tr>
+      <tr>
+        <td>
+          <div class="forum-title"><a href="#apps">Game Releases</a></div>
+          <div class="forum-desc">
+            Information about Minesweepah and Drummakid, including public app details and current support links.
+          </div>
+        </td>
+        <td class="stats">
+          Threads: 2<br />
+          Posts: 2
+        </td>
+        <td class="lastpost">
+          by Admin<br />
+          Today, 1:00 PM
+        </td>
+      </tr>
+      <tr class="forum-row-alt">
+        <td>
+          <div class="forum-title"><a href="#support">Support Desk</a></div>
+          <div class="forum-desc">
+            Help contact details for app issues, bug reports, and general support questions.
+          </div>
+        </td>
+        <td class="stats">
+          Threads: 1<br />
+          Posts: 1
+        </td>
+        <td class="lastpost">
+          by Admin<br />
+          Today, 1:01 PM
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="forum-title"><a href="#privacy">Privacy Policy</a></div>
+          <div class="forum-desc">
+            Public privacy information for Kaino4 Studios and its apps on Apple platforms.
+          </div>
+        </td>
+        <td class="stats">
+          Threads: 1<br />
+          Posts: 1
+        </td>
+        <td class="lastpost">
+          by Admin<br />
+          Today, 1:02 PM
+        </td>
+      </tr>
+    </table>
+
+    <table class="post" id="apps">
+      <tr>
+        <th colspan="2">Thread: Welcome to Kaino4 Studios</th>
+      </tr>
+      <tr>
+        <td class="post-user">
+          <div class="username">Admin</div>
+          <div class="usertitle">Site Administrator</div>
+          <div class="avatar">K4S</div>
+          <div class="small">
+            <span class="status-dot"></span>Online<br />
+            Join Date: Apr 2026<br />
+            Posts: 4
+          </div>
+          <div class="rank">Forum Founder</div>
+        </td>
+        <td class="post-body">
+          <strong>Kaino4 Studios</strong> is an independent software studio focused on polished mobile experiences.
+          We make simple, focused apps that are fun to use and respectful of user privacy.
+          <br /><br />
+          This website serves as the public company page, support page, and privacy policy page for Kaino4 Studios.
+          <div class="sig">
+            Kaino4 Studios<br />
+            Home of Minesweepah and Drummakid
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <table class="post">
+      <tr>
+        <th colspan="2">Thread: Current Games and Apps</th>
+      </tr>
+      <tr>
+        <td class="post-user">
+          <div class="username">Admin</div>
+          <div class="usertitle">Announcements</div>
+          <div class="avatar">APP</div>
+          <div class="small">
+            <span class="status-dot"></span>Online<br />
+            Join Date: Apr 2026<br />
+            Posts: 4
+          </div>
+          <div class="rank">Patch Notes</div>
+        </td>
+        <td class="post-body">
+          <strong>Minesweepah</strong><br />
+          A clean, fast minesweeper-style puzzle game made for players who want a straightforward, satisfying challenge on Apple devices.
+          <br /><br />
+          <strong>Drummakid</strong><br />
+          A responsive drum pad app designed for quick play, practice, and beat-making on the go.
+          <br /><br />
+          <span class="muted">Support email for both apps:</span>
+          <a href="mailto:support@kaino4apps.store">support@kaino4apps.store</a>
+        </td>
+      </tr>
+    </table>
+
+    <table class="post" id="support">
+      <tr>
+        <th colspan="2">Thread: Support Information</th>
+      </tr>
+      <tr>
+        <td class="post-user">
+          <div class="username">Admin</div>
+          <div class="usertitle">Support Desk</div>
+          <div class="avatar">HELP</div>
+          <div class="small">
+            <span class="status-dot"></span>Online<br />
+            Join Date: Apr 2026<br />
+            Posts: 4
+          </div>
+          <div class="rank">GM Support</div>
+        </td>
+        <td class="post-body">
+          Need help with one of our apps? Email us at
+          <a href="mailto:support@kaino4apps.store">support@kaino4apps.store</a>.
+          <br /><br />
+          When you email support, include:
+          <ul>
+            <li>app name</li>
+            <li>device model</li>
+            <li>iOS version</li>
+            <li>a short description of the issue</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+
+    <table class="post" id="privacy">
+      <tr>
+        <th colspan="2">Thread: Privacy Policy</th>
+      </tr>
+      <tr>
+        <td class="post-user">
+          <div class="username">Admin</div>
+          <div class="usertitle">Policy Post</div>
+          <div class="avatar">INFO</div>
+          <div class="small">
+            Effective Date:<br />
+            April 9, 2026
+          </div>
+          <div class="rank">Pinned Thread</div>
+        </td>
+        <td class="post-body">
+          <strong>Kaino4 Studios respects your privacy.</strong> This Privacy Policy explains how Minesweepah and Drummakid handle information.
+          <br /><br />
+
+          <strong>Information We Collect</strong><br />
+          We do not collect, store, sell, or share personal information through Minesweepah or Drummakid.
+          <br /><br />
+
+          <strong>Local Device Storage</strong><br />
+          These apps may store settings, saved state, high scores, or similar app information locally on your device only to support normal app functionality.
+          <br /><br />
+
+          <strong>Analytics, Advertising, and Tracking</strong><br />
+          We do not use third-party analytics, advertising SDKs, or tracking technologies in these apps.
+          <br /><br />
+
+          <strong>Accounts</strong><br />
+          Our apps do not require you to create an account.
+          <br /><br />
+
+          <strong>Children's Privacy</strong><br />
+          Our apps are not designed to knowingly collect personal information from children.
+          <br /><br />
+
+          <strong>Third-Party Services</strong><br />
+          If a future version of either app adds third-party services or changes how information is handled, we will update this Privacy Policy before or when those changes take effect.
+          <br /><br />
+
+          <strong>Changes to This Policy</strong><br />
+          We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated effective date.
+          <br /><br />
+
+          <strong>Contact</strong><br />
+          If you have questions about this Privacy Policy, contact us at
+          <a href="mailto:support@kaino4apps.store">support@kaino4apps.store</a>.
+        </td>
+      </tr>
+    </table>
+
+    <div class="section-title">Board Statistics</div>
+    <div class="info-box">
+      Threads: 4 &nbsp; | &nbsp; Posts: 4 &nbsp; | &nbsp; Members: 1 &nbsp; | &nbsp; Latest Post: Privacy Policy
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2026 Kaino4 Studios. All rights reserved.
+  </div>
+</body>
+</html>
